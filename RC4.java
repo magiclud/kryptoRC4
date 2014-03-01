@@ -53,7 +53,6 @@ public class RC4 {
 		try {
 			generator = KeyGenerator.getInstance("DES", "BC");
 	
-        generator.init(new SecureRandom());
         Key key = generator.generateKey();
 		
 		KeyStore store = KeyStore.getInstance("PKCS12", "BC");
@@ -65,7 +64,7 @@ public class RC4 {
 	    Certificate cert[] = new Certificate[1];
 	    cert[0]=store.getCertificate(alias);
 	    
-		store.setKeyEntry("alias", key, tabPass, cert);
+		store.setKeyEntry("alias", key, tabPass, null);
 		
 		String klucz = key.toString();
 		this.tabKlucz = klucz.toCharArray();
