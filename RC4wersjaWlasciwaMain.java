@@ -25,23 +25,37 @@ public class RC4wersjaWlasciwaMain {
 		String aliasHasla = "mojAlias";
 		String sciezkaDoKeyStore = RC4wersjaWlasciwa.createKeyStore(hasloDoKeystora, aliasHasla);
 
-		String wiadomosc = "Polish PM Donald Tusk met with Yulia Tymoshenko in Dublin, Thursday night, following EU leaders declaring a Crimea referendum on leaving Ukraine would violate international law. - See more at: http://thenews.pl/1/10/Artykul/164396,Tymoshenko-meets-Tusk-in-Dublin";
+		String wiadomosc = "adopcja ";
 		byte[] kryptogram = RC4wersjaWlasciwa.zakoduj(wiadomosc,
 				RC4wersjaWlasciwa.pobierzKlucz(sciezkaDoKeyStore, aliasHasla, hasloDoKeystora));
 		RC4wersjaWlasciwa.zapiszZakodowanaWiadomoscDoPilku(kryptogram);
 		
-		String wiadomosc2 = "\"Tymoshenko thanked Poland for its attempts, especially in recent week, to solve the crisis in Ukraine,\" Polish deputy foreign minister Piotr Serafin said. - See more at: http://thenews.pl/1/10/Artykul/164396,Tymoshenko-meets-Tusk-in-Dublin#sthash.36yECgKW.dpuf";
+		String wiadomosc2 = "pajacyk ";
 		byte[] kryptogram2 = RC4wersjaWlasciwa.zakoduj(wiadomosc2,
 				RC4wersjaWlasciwa.pobierzKlucz(sciezkaDoKeyStore, aliasHasla, hasloDoKeystora));
 		RC4wersjaWlasciwa.zapiszZakodowanaWiadomoscDoPilku(kryptogram2);
 		
 		byte[] zdekodowanyTekst = RC4wersjaWlasciwa.dekoduj(kryptogram,
 				RC4wersjaWlasciwa.pobierzKlucz(sciezkaDoKeyStore, aliasHasla, hasloDoKeystora));
+		
+		byte[] zdekodowanyTekst2 = RC4wersjaWlasciwa.dekoduj(kryptogram2,
+				RC4wersjaWlasciwa.pobierzKlucz(sciezkaDoKeyStore, aliasHasla, hasloDoKeystora));
 
+		
 		System.out.println(wiadomosc);
 		System.out.println(new String(kryptogram));
 		System.out.println(new String(zdekodowanyTekst));
 		System.out.println(new String(kryptogram2));
+		System.out.println(new String(zdekodowanyTekst2));
+		System.out.println("");
 		
+		System.out.println("Xor tekstow jawnych: "+ RC4wersjaWlasciwa.wykonajXor(wiadomosc, wiadomosc2));
+		
+		System.out.println("Xor kryptogramow:    "+ RC4wersjaWlasciwa.wykonajXor(kryptogram.toString(), kryptogram2.toString()));
+	
+System.out.println("Xor2 tekstow jawnych: "+ RC4wersjaWlasciwa.wykonajXor2(wiadomosc, wiadomosc2));
+		
+		System.out.println("Xor2 kryptogramow:    "+ RC4wersjaWlasciwa.wykonajXor2(kryptogram.toString(), kryptogram2.toString()));
+	
 	}
 }

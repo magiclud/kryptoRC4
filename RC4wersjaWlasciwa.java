@@ -16,6 +16,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.KeyStore.Entry;
 import java.security.KeyStore.ProtectionParameter;
 import java.security.cert.CertificateException;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -214,5 +215,44 @@ public class RC4wersjaWlasciwa {
 				e.printStackTrace();
 			}
 	
+}
+
+	public static String wykonajXor(String wiadomosc, String wiadomosc2) {
+		
+		//XOR - DRUGI SPOSÓB
+		     //   int max = Math.max(wiadomosc.length(), wiadomosc2.length());
+//		        StringBuilder builder = new StringBuilder();
+//		        for(int i=0; i<max; i++){
+//		            if(wiadomosc.charAt(i)!=wiadomosc2.charAt(i)){
+//		                builder.append("1");
+//		            }else{
+//		                builder.append("0");
+//		            }
+//		        }
+//		        return builder.toString();
+		
+		byte wiad1[] = wiadomosc.getBytes();
+		byte wiad2[] = wiadomosc2.getBytes();
+		byte wynik[] = new byte[wiad1.length];
+		for(int i=0; i< wiad1.length; i++){
+			wynik[i]= (byte) (wiad1[i] ^ wiad2[i]);
+		}
+	    System.out.println(wynik.toString());
+	    return "";
+		    }	
+	
+public static String wykonajXor2(String wiadomosc, String wiadomosc2) {
+		
+		//XOR - DRUGI SPOSÓB
+		        int max = Math.max(wiadomosc.length(), wiadomosc2.length());
+		        StringBuilder builder = new StringBuilder();
+		        for(int i=0; i<max; i++){
+		            if(wiadomosc.charAt(i)!=wiadomosc2.charAt(i)){
+		                builder.append("1");
+		            }else{
+		                builder.append("0");
+		            }
+		        }
+		        return builder.toString();
 }
 }
