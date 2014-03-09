@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -196,63 +198,53 @@ public class RC4wersjaWlasciwa {
 	}
 
 	public static void zapiszZakodowanaWiadomoscDoPilku(byte[] kryptogram) {
-	
-			File kryptogramFile = new File("kryptogramZad1.txt");
-			FileOutputStream stream;
-			try {
-				stream = new FileOutputStream(kryptogramFile);
-			
+
+		File kryptogramFile = new File("kryptogramZad1.txt");
+		FileOutputStream stream;
+		try {
+			stream = new FileOutputStream(kryptogramFile);
+
 			stream.write(kryptogram);
 			stream.close();
 			System.out.println("sceizka do kryptogramu"
 					+ kryptogramFile.getAbsolutePath());
-			
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	public static String wykonajXor(String wiadomosc, String wiadomosc2) {
-		
-		//XOR - DRUGI SPOSÓB
-		     //   int max = Math.max(wiadomosc.length(), wiadomosc2.length());
-//		        StringBuilder builder = new StringBuilder();
-//		        for(int i=0; i<max; i++){
-//		            if(wiadomosc.charAt(i)!=wiadomosc2.charAt(i)){
-//		                builder.append("1");
-//		            }else{
-//		                builder.append("0");
-//		            }
-//		        }
-//		        return builder.toString();
-		
+
+		// XOR - DRUGI SPOSÓB
+		// int max = Math.max(wiadomosc.length(), wiadomosc2.length());
+		// StringBuilder builder = new StringBuilder();
+		// for(int i=0; i<max; i++){
+		// if(wiadomosc.charAt(i)!=wiadomosc2.charAt(i)){
+		// builder.append("1");
+		// }else{
+		// builder.append("0");
+		// }
+		// }
+		// return builder.toString();
+
 		byte wiad1[] = wiadomosc.getBytes();
 		byte wiad2[] = wiadomosc2.getBytes();
 		byte wynik[] = new byte[wiad1.length];
-		for(int i=0; i< wiad1.length; i++){
-			wynik[i]= (byte) (wiad1[i] ^ wiad2[i]);
+		int min = Math.min(wiadomosc.length(), wiadomosc2.length());
+		for (int i = 0; i < min; i++) {
+			wynik[i] = (byte) (wiad1[i] ^ wiad2[i]);
 		}
-	    System.out.println(wynik.toString());
-	    return "";
-		    }	
-	
-public static String wykonajXor2(String wiadomosc, String wiadomosc2) {
-		
-		//XOR - DRUGI SPOSÓB
-		        int max = Math.max(wiadomosc.length(), wiadomosc2.length());
-		        StringBuilder builder = new StringBuilder();
-		        for(int i=0; i<max; i++){
-		            if(wiadomosc.charAt(i)!=wiadomosc2.charAt(i)){
-		                builder.append("1");
-		            }else{
-		                builder.append("0");
-		            }
-		        }
-		        return builder.toString();
-}
+		for (int i = 0; i < min; i++) {
+			System.out.print(wynik[i] + " ");
+		}
+		System.out.println("");
+		return "";
+	}
+
 }

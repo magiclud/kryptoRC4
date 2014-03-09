@@ -45,7 +45,7 @@ public class RC4wersjaWlasciwaMain {
 		System.out.println(wiadomosc);
 		System.out.println(new String(kryptogram));
 		System.out.println(new String(zdekodowanyTekst));
-		System.out.println(new String(kryptogram2));
+		System.out.println(new String(kryptogram2)); 
 		System.out.println(new String(zdekodowanyTekst2));
 		System.out.println("");
 		
@@ -53,9 +53,6 @@ public class RC4wersjaWlasciwaMain {
 		
 		System.out.println("Xor kryptogramow:    "+ RC4wersjaWlasciwa.wykonajXor(kryptogram.toString(), kryptogram2.toString()));
 	
-System.out.println("Xor2 tekstow jawnych: "+ RC4wersjaWlasciwa.wykonajXor2(wiadomosc, wiadomosc2));
 		
-		System.out.println("Xor2 kryptogramow:    "+ RC4wersjaWlasciwa.wykonajXor2(kryptogram.toString(), kryptogram2.toString()));
-	
 	}
 }
